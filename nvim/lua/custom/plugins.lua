@@ -28,13 +28,16 @@ local plugins = {
     opts = overrides.mason
   },
 
-  -- mason dep
+  -- python debugging usin nvim-dab
   {
-    "mfussenegger/nvim-dap",
-    "jay-babu/mason-nvim-dap.nvim",
-    init = function()
-      require("core.utils").lazy_load "mason-nvim-dep"
-    end,
+    "mfussenegger/nvim-dap-python",
+    dependencies= {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-telescope/telescope-dap.nvim",
+    },
+
   },
 
   {
