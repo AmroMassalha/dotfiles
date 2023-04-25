@@ -12,19 +12,18 @@ scrolling:
 
 font:
   normal:
-    family: SFMono Nerd Font
-    style: Light
+    family: Hack Nerd Font
 
   bold:
-    family: SFMono Nerd Font
+    family: Hack Nerd Font
     style: Heavy
 
   italic:
-    family: SFMono Nerd Font
+    family: Hack Nerd Font
     style: Light Italic
 
   bold_italic:
-    family: SFMono Nerd Font
+    family: Hack Nerd Font
     style: Semibold Italic
 
   size: 16.0
