@@ -425,3 +425,19 @@ sad
 : 1682406908:0;rm -rf nvchad-conf
 : 1682406909:0;ls
 : 1682406915:0;lazygit
+: 1682407000:0;clear
+: 1682407002:0;ll
+: 1682407006:0;ls -la
+: 1682407272:0;cd tmux
+: 1682407273:0;ls
+: 1682407356:0;cd ..
+: 1682407357:0;ls
+: 1682407371:0;brew bundle install
+: 1682407443:0;brew bundle dump\
+
+: 1682407449:0;ls -la
+: 1682407455:0;cat Brewfile
+: 1682407468:0;rm -rf my_brews.txt
+: 1682407476:0;brew bundle install
+: 1682407498:0;nvim
+: 1682408566:0;lazygit
