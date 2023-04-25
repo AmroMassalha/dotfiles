@@ -1,0 +1,1 @@
+/Users/amro/.config/zsh/.zprezto/runcoms/zlogout

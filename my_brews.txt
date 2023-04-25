@@ -1,0 +1,13 @@
+docker
+git
+jq
+lazygit
+neovim
+node
+pyenv
+python@3.11
+sheldon
+starship
+tmux
+zf
+zsh
