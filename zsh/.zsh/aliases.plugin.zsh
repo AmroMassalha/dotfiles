@@ -1,3 +1,5 @@
+alias v='nvim'
+
 alias ls='exa --group-directories-first --icons'
 alias ll='ls -lh'
 alias la='ll -a'
