@@ -1,0 +1,78 @@
+export PATH=$PATH:$HOME/.local/share/npm/bin:$HOME/.luarocks/bin:.
+
+export KUBECONFIG=$HOME/.kube/config:$HOME/.kube/config_user
+export WINEDEBUG=-all
+export SDL_VIDEO_FULLSCREEN_DISPLAY=0
+
+export JDK17="$HOME/.local/jdks/jdk-17.0.7+7/"
+export JDK19="$HOME/.local/jdks/jdk-19.0.2+7/"
+export JDK20="$HOME/.local/jdks/jdk-20.0.1+9/"
+export JAVA_HOME="$JDK17"
+export GRAALVM_HOME="$HOME/.local/jdks/graalvm-ce-java17-22.3.0/"
+
+export GOPATH="$HOME/workspace/code/go"
+export STARDICT_DATA_DIR="$HOME/.local/share/stardict/"
+
+if [[ -n "$SSH_CLIENT" ]]; then
+  export BROWSER=/usr/bin/lynx
+else
+  export BROWSER=/usr/bin/qutebrowser
+fi
+
+if [ -n "$NVIM" ]; then
+  export VISUAL="nvr -cc split --remote-wait"
+else
+  export VISUAL="v"
+fi
+export MANPAGER="$VISUAL +Man! -"
+export EDITOR=$VISUAL
+export SUDO_EDIT=$VISUAL
+export DIFFPROG="$VISUAL -d"
+alias vi=$VISUAL
+
+
+myoutube() {
+    mpv $(youtube-dl -g $1)
+}
+
+greph() {
+    history 0 | grep $1
+}
+
+
+share_internet() {
+    if [[ -z "$1" ]] then
+        echo "share_internet <dev with internet> <dev with clients>"
+        return 1
+    fi
+    if [[ -z "$2" ]] then
+        echo "share_internet <dev with internet> <dev with clients>"
+        return 1
+    fi
+    # share_internet from(dev with clients) to (dev with internet)
+    sudo sysctl net.ipv4.ip_forward=1
+    sudo iptables -t nat -A POSTROUTING -o $1 -j MASQUERADE
+    sudo iptables -A FORWARD -i $2 -o $1 -j ACCEPT
+}
+
+# kill all processes that use port $1
+portkill() {
+    lsof -i :$1 | tail -n +2 | awk '{ print $2 }' | xargs kill
+}
+
+clean_whiteboard() {
+    convert "$1" -morphology Convolve DoG:15,100,0 -negate -normalize -blur 0x1 -channel
+}
+
+update_mirrorlist() {
+    reflector -n 24 -c AT -c DE -f 10 -l 10 | sudo tee /etc/pacman.d/mirrorlist
+}
+
+
+mp42gif() {
+  ffmpeg -i "$1" -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$2"
+}
+
+pick-color() {
+  grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-
+}
