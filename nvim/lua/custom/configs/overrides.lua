@@ -2,6 +2,8 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
+    "dockerfile",
+    "go",
     "vim",
     "lua",
     "html",
@@ -22,6 +24,13 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
+    -- docker
+    "docker-compose-language-service",
+    "dockerfile-language-server",
+
+    -- go
+    "gopls",
+
     -- lua stuff
     "lua-language-server",
     "stylua",
