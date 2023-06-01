@@ -20,6 +20,15 @@ local sources = {
 
   -- python
   b.formatting.black,
+
+  -- terraform
+  b.formatting.terraform_fmt,
+  b.diagnostics.terraform_validate,
+
+  -- yaml
+  b.formatting.yamlfix,
+  b.formatting.yamlfmt,
+  b.diagnostics.yamllint
 }
 
 null_ls.setup {

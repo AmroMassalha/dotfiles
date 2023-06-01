@@ -1,4 +1,4 @@
-alias v='nvim'
+alias v='~/setup/squashfs-root/usr/bin/nvim'
 
 alias ls='exa --group-directories-first --icons'
 alias ll='ls -lh'

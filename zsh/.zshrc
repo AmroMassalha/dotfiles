@@ -16,9 +16,14 @@ source ~/.config/zsh/.zshrc.local
 
 source ~/.config/zsh/.zsh/async.zsh
 source ~/.config/zsh/.zsh/zsh-history-substring-search.zsh
-source ~/.config/zsh/.zsh/pure.zsh
+# source ~/.config/zsh/.zsh/pure.zsh
 
 [ -f ~/.zshrc.secret ] && source ~/.zshrc.secret
 
 [ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
 eval "$(lua ~/.config/zsh/.zsh/z.lua --init zsh once enhanced fzf)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+
+eval "$(starship init zsh)"
