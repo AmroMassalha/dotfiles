@@ -1,8 +1,13 @@
+# Ignore Lock files
 Brewfile.lock.json
-zsh/zsh_history
-tmux/plugins/*
 lvim/*lock.json
+
+# Ignore ZSH files
+zsh/zsh_history
+
+# Ignore Tmux plugins
+tmux/plugins/*
+
+# Ignore Directories
 helm/
 k9s/
-
-
