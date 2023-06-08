@@ -1,1 +1,0 @@
-/Users/amro/.config/zsh/.zprezto/runcoms/zlogin

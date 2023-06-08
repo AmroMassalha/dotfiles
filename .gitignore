@@ -1,5 +1,8 @@
 Brewfile.lock.json
 zsh/zsh_history
 tmux/plugins/*
+lvim/*lock.json
+helm/
+k9s/
 
 

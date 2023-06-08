@@ -1,29 +1,19 @@
-PURE_PROMPT_SYMBOL="↪ "
-PURE_GIT_PULL=0
-PURE_GIT_UNTRACKED_DIRTY=0
-FZF_DEFAULT_COMMAND="rg --files"
+# Created by Zap installer
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/supercharge"
+plug "zap-zsh/zap-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zap-zsh/sudo"
+plug "zap-zsh/vim"
+plug "Aloxaf/fzf-tab"
+plug "zap-zsh/fzf"
+plug "zap-zsh/exa"
+plug "chrishrb/zsh-kubectl"
+plug "zsh-users/zsh-history-substring-search"
 
-source ~/.config/zsh/.zsh/history.plugin.zsh
-source ~/.config/zsh/.zsh/completion.plugin.zsh
-source ~/.config/zsh/.zsh/systemd.plugin.zsh
-source ~/.config/zsh/.zsh/utils.plugin.zsh
-source ~/.config/zsh/.zsh/python.plugin.zsh
-source ~/.config/zsh/.zsh/aliases.plugin.zsh
-source ~/.config/zsh/.zsh/vi-keybindings.plugin.zsh
-source ~/.config/zsh/.zsh/git.plugin.zsh
-source ~/.config/zsh/.zsh/fzy.zsh
-source ~/.config/zsh/.zshrc.local
+# Load and initialise completion system
+autoload -Uz compinit
+compinit
 
-source ~/.config/zsh/.zsh/async.zsh
-source ~/.config/zsh/.zsh/zsh-history-substring-search.zsh
-# source ~/.config/zsh/.zsh/pure.zsh
-
-[ -f ~/.zshrc.secret ] && source ~/.zshrc.secret
-
-[ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
-eval "$(lua ~/.config/zsh/.zsh/z.lua --init zsh once enhanced fzf)"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-
-eval "$(starship init zsh)"
+neofetch
