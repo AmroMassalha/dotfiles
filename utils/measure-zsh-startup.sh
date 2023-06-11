@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+
+for run in {1..5}; do
+  time zsh --interactive -c exit
+done
+

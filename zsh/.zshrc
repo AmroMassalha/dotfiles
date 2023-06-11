@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
@@ -18,6 +20,9 @@ plug "Aloxaf/fzf-tab"
 autoload -Uz compinit
 compinit
 
+# Ensure terminal colorts work inside tmux
+if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
+
 # Start interactive shell sessions with a greeting
 neofetch
 
@@ -28,3 +33,10 @@ if typeset -f enable-fzf-tab > /dev/null; then
 fi
 
 set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
+
+# Import zsh custumes aliases 
+if [ -f $HOME/.config/zsh/config/zsh_aliases ]; then
+  . $HOME/.config/zsh/config/zsh_aliases
+fi
+
+# zprof
