@@ -6,7 +6,7 @@ lvim/*lock.json
 zsh/zsh_history
 
 # Ignore Tmux plugins
-tmux/plugins/*
+tmux/plugins/
 
 # Ignore Directories
 helm/
