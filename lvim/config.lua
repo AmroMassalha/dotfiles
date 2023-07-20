@@ -7,20 +7,31 @@ lvim.plugins = {
   "nvim-neotest/neotest-python",
 }
 
--- automatically install python syntax highlighting
+-- automatically install python, terraform syntax highlighting
 lvim.builtin.treesitter.ensure_installed = {
   "python",
+  "terraform"
 }
+
+-- Remove LSPs from the skiped servers
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "docker_compose_language_service"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- setup formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup { { name = "black" }, }
+formatters.setup {
+  { name = "black" },
+  { name = "terraform_fmt" },
+}
 lvim.format_on_save.enabled = true
 lvim.format_on_save.pattern = { "*.py" }
 
 -- setup linting
 local linters = require "lvim.lsp.null-ls.linters"
-linters.setup { { command = "flake8", args = { "--max-line-length=120" }, filetypes = { "python" } } }
+linters.setup {
+  { command = "flake8", args = { "--max-line-length=120" }, filetypes = { "python" } }
+}
 
 -- setup debug adapter
 lvim.builtin.dap.active = true
