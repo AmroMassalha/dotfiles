@@ -34,10 +34,12 @@ Use symbolic links to link the dotfiles to their appropriate locations. This all
 
 ```bash
 ln -s ~/dotfiles/nvim ~/.config/nvim
-ln -s ~/dotfiles/other_app_config ~/.config/other_app_config
-ln -s ~/dotfiles/script_name ~/bin/script_name
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/zshrc ~/.zshrc
+ln -s ~/dotfiles/sketchybar ~/.config/sketchybar
+ln -s ~/dotfiles/skhd ~/.config/skhd
+ln -s ~/dotfiles/yabai ~/.config/yabai
+ln -s ~/dotfiles/bin ~/bin
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.zshrc ~/.zshrc
 ```
 
 ### Step 3: Install Homebrew Packages
