@@ -188,9 +188,9 @@ alias vim="nvim"
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 
-alias oo="cd ~/Documents/Obsidian/AmroMassalha"
+alias oo="z ~/Documents/Obsidian/AmroMassalha"
 alias or='vim $HOME/Documents/Obsidian/AmroMassalha/inbox/*.md'
-alias ou='cd $HOME/.config/notion-obsidian-sync-app && node batchUpload.js --lastmod-days-window 5'
+alias ou='z ~/dotfiles/notion-obsidian-sync-app/ && node batchUpload.js --lastmod-days-window 5'
 
 alias t=tmux
 
