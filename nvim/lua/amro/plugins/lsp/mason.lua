@@ -42,7 +42,7 @@ return {
                 "emmet_ls",
                 "prismals",
                 "pyright",
-                "markdown_oxide",
+                "grammarly",
             },
         })
 

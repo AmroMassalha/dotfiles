@@ -22,19 +22,38 @@ return {
                 python = { "isort", "black" },
                 terraform = { "terraform_fmt" },
             },
-            format_on_save = {
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 1000,
-            },
+            format_on_save = function(bufnr)
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                    return
+                end
+                return { timeout_ms = 500, lsp_fallback = true }
+            end,
         })
-
-        vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-            conform.format({
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 1000,
-            })
-        end, { desc = "Format file or range (in visual mode)" })
+        vim.api.nvim_create_user_command("FormatDisable", function(args)
+            if args.bang then
+                vim.b.disable_autoformat = true
+            else
+                vim.g.disable_autoformat = true
+            end
+        end, {
+            desc = "Disable autoformat-on-save",
+            bang = true,
+        })
+        vim.keymap.set("", "<leader>mp", function()
+            require("conform").format({ async = true, lsp_fallback = true })
+        end, { desc = "[F]ormat" })
+        vim.api.nvim_create_user_command("FormatEnable", function()
+            vim.b.disable_autoformat = false
+            vim.g.disable_autoformat = false
+        end, {
+            desc = "Re-enable autoformat-on-save",
+        })
+        vim.keymap.set("n", "<leader>mP", function()
+            if vim.b.disable_autoformat or vim.g.disable_autoformat then
+                vim.cmd("FormatEnable")
+            else
+                vim.cmd("FormatDisable")
+            end
+        end, { desc = "Toggle [F]ormat" })
     end,
 }

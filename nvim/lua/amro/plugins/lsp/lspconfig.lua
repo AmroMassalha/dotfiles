@@ -140,6 +140,15 @@ return {
                     },
                 })
             end,
+            ["grammarly"] = function()
+                lspconfig["grammarly"].setup({
+                    root_dir = function(fname)
+                        return lspconfig.util.find_git_ancestor(fname)
+                            or lspconfig.util.root_pattern("keep")(fname)
+                            or lspconfig.util.path.dirname(fname)
+                    end,
+                })
+            end,
             ["pyright"] = function()
                 lspconfig["pyright"].setup({
                     root_dir = function(fname)
