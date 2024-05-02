@@ -2,9 +2,13 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+        { "williamboman/mason.nvim", config = true },
+        "williamboman/mason-lspconfig.nvim",
         "hrsh7th/cmp-nvim-lsp",
         { "antosha417/nvim-lsp-file-operations", config = true },
         { "folke/neodev.nvim", opts = {} },
+        { "b0o/schemastore.nvim" },
+        { "j-hui/fidget.nvim", opts = {} },
     },
     config = function()
         -- import lspconfig plugin
@@ -19,56 +23,53 @@ return {
         local keymap = vim.keymap -- for conciseness
 
         vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-            callback = function(ev)
-                -- Buffer local mappings.
-                -- See `:help vim.lsp.*` for documentation on any of the below functions
-                local opts = { buffer = ev.buf, silent = true }
+            group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+            callback = function(event)
+                local map = function(keys, func, desc)
+                    vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+                end
 
-                -- set keybinds
-                opts.desc = "Show LSP references"
-                keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+                map("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
+                map("gr", require("telescope.builtin").lsp_references, "Goto References")
+                map("gi", require("telescope.builtin").lsp_implementations, "Goto Implementation")
+                map("go", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+                map("<leader>p", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
+                map("<leader>P", require("telescope.builtin").lsp_workspace_symbols, "Workspace Symbols")
+                map("<leader>Ps", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
 
-                opts.desc = "Go to declaration"
-                keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+                map("K", vim.lsp.buf.hover, "Hover Documentation")
+                map("gs", vim.lsp.buf.signature_help, "Signature Documentation")
+                map("gD", vim.lsp.buf.declaration, "Goto Declaration")
 
-                opts.desc = "Show LSP definitions"
-                keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+                map("<leader>d", vim.diagnostic.open_float, "Show line diagnostics")
+                map("<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", "Show buffer diagnostics")
+                map("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+                map("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
 
-                opts.desc = "Show LSP implementations"
-                keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+                map("<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Goto Definition in Vertical Split")
 
-                opts.desc = "Show LSP type definitions"
-                keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+                -- Thank you teej
+                -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua#L502
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
+                if client and client.server_capabilities.documentHighlightProvider then
+                    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                        buffer = event.buf,
+                        callback = vim.lsp.buf.document_highlight,
+                    })
 
-                opts.desc = "See available code actions"
-                keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-
-                opts.desc = "Smart rename"
-                keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-                opts.desc = "Show buffer diagnostics"
-                keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-
-                opts.desc = "Show line diagnostics"
-                keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-                opts.desc = "Go to previous diagnostic"
-                keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
-
-                opts.desc = "Go to next diagnostic"
-                keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
-
-                opts.desc = "Show documentation for what is under cursor"
-                keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
-                opts.desc = "Restart LSP"
-                keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+                    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+                        buffer = event.buf,
+                        callback = vim.lsp.buf.clear_references,
+                    })
+                end
             end,
         })
 
+        require("lspconfig.ui.windows").default_options.border = "single"
+        require("neodev").setup()
         -- used to enable autocompletion (assign to every lsp server config)
         local capabilities = cmp_nvim_lsp.default_capabilities()
+        capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
         -- Change the Diagnostic symbols in the sign column (gutter)
         -- (not in youtube nvim video)
@@ -138,6 +139,13 @@ return {
                             },
                         },
                     },
+                })
+            end,
+            ["terraformls"] = function()
+                lspconfig["terraformls"].setup({
+                    cmd = { "terraform-ls" },
+                    arg = { "server" },
+                    filetypes = { "terraform", "tf", "terraform-vars" },
                 })
             end,
             ["grammarly"] = function()
