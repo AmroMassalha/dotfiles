@@ -23,10 +23,11 @@ return {
           package_uninstalled = "✗",
         },
       },
-      ensure_installed = {
-        "mypy",
-        "black",
-        "debugpy",
+      override_options = {
+        ensure_installed = {
+          "mypy",
+          "debugpy",
+        },
       },
     })
 
@@ -58,6 +59,7 @@ return {
         "stylua", -- lua formatter
         "tflint",
         "eslint_d",
+        "black",
       },
     })
   end,
