@@ -24,7 +24,6 @@ return {
         },
       },
       ensure_installed = {
-        "ruff",
         "mypy",
         "black",
         "debugpy",

@@ -173,12 +173,6 @@ return {
           filetypes = { "python" },
         })
       end,
-      ["ruff_lsp"] = function()
-        lspconfig["ruff_lsp"].setup({
-          capabilities = capabilities,
-          filetypes = { "python" },
-        })
-      end,
     })
   end,
 }

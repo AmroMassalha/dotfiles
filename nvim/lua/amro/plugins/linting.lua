@@ -11,7 +11,7 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       terraform = { "tflint" },
-      python = { "mypy", "ruff" },
+      python = { "mypy" },
       markdown = { "markdownlint" },
     }
 
