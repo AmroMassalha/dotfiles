@@ -11,6 +11,7 @@ return {
       markdown = { "prettier" },
       lua = { "stylua" },
       terraform = { "terraform_fmt" },
+      python = { "black", "isort" },
     }
 
     -- Python formatter setup for new files only
