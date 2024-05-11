@@ -1,4 +1,12 @@
 *.swp
 *~
 .DS_Store
-./nvim/lazy-lock.json
+.luarc.json
+lazy-lock.json
+
+
+node_modules/
+
+package-lock.json
+package.json
+
