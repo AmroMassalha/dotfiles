@@ -6,20 +6,43 @@ palette = "catppuccin_mocha"
 right_format = """$all"""
 command_timeout = 1000
 
+continuation_prompt = '▶▶ '
+
+[character]
+success_symbol = '[➜](bold green) '
+error_symbol = '[✗](bold red) '
+vimcmd_symbol = '[V](bold green) '
+
 [directory.substitutions]
 '~/tests/starship-custom' = 'work-project'
 
 [git_branch]
-format =  '[$symbol$branch(:$remote_branch)]($style)'
+format =  '[$symbol$branch(:$remote_branch )]($style)'
+symbol = "󰘬 "
+truncation_symbol = ' '
+truncation_length = 8
 
 [aws]
-format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'
-disabled = false
-style = 'bold blue'
-symbol = " "
+format = '[$symbol("$profile")]($style)'
+style = 'bold yellow'
+symbol = "󰸏 "
+[aws.profile_aliases]
+icvt-amro = 'ICVT'
+jpegmini-amro = 'JPEGMINI'
+
+[python]
+symbol = "󰌠 "
+style = "bold green"
+
+
+[nodejs]
+disabled = true
 
 [golang]
 format = '[ ](bold cyan)'
+
+[cmd_duration]
+disabled = true
 
 [kubernetes]
 symbol = '☸ '
@@ -31,7 +54,8 @@ contexts = [
 ]
 
 [docker_context]
-disabled = true
+symbol = " "
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile', 'dockerfile']
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
