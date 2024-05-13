@@ -17,7 +17,7 @@ vimcmd_symbol = '[V](bold green) '
 '~/tests/starship-custom' = 'work-project'
 
 [git_branch]
-format =  '[$symbol$branch(:$remote_branch )]($style)'
+format =  '[$symbol$branch (:$remote_branch)]($style)'
 symbol = "󰘬 "
 truncation_symbol = ' '
 truncation_length = 8

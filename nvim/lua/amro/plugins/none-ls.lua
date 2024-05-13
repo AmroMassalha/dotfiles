@@ -1,6 +1,27 @@
 return {
   "nvimtools/none-ls.nvim",
+
+  dependencies = { "mason.nvim" },
+
+  opts = function (_, opts)
+    opts.root_dir = opts.root_dir
+      or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
+  end,
   config = function()
+    local augroup = vim.api.nvim_create_augroup("NoneLsFormatting", {})
+    local on_attach = function(client, bufnr)
+      if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format({ bufnr = bufnr })
+          end,
+        })
+      end
+    end
+
     local null_ls = require("null-ls")
     local helpers = require("null-ls.helpers")
     null_ls.setup({
@@ -17,6 +38,7 @@ return {
 
         null_ls.builtins.completion.spell,
       },
+      on_attach = on_attach,
     })
 
     vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
@@ -52,5 +74,6 @@ return {
     }
 
     null_ls.register(markdownlint)
+    on_attach = on_attach
   end,
 }

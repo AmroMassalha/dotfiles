@@ -14,6 +14,18 @@ return {
         vim.keymap.set("n", "<leader>uC", "<cmd>Telescope colors<CR>", { desc = "Telescope Color Picker" })
       end,
     },
+    {
+      "ANGkeith/telescope-terraform-doc.nvim",
+      config = function()
+        require("telescope").load_extension("terraform_doc")
+      end,
+    },
+    {
+      "cappyzawa/telescope-terraform.nvim",
+      config = function()
+        require("telescope").load_extension("terraform")
+      end,
+    },
   },
   config = function()
     local telescope = require("telescope")
@@ -25,7 +37,7 @@ return {
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
-            ["<C-j>"] = actions.move_selection_next, -- move to next result
+            ["<C-j>"] = actions.move_selection_next,     -- move to next result
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
           },
         },

@@ -22,7 +22,8 @@ return {
           "terraformls",
           "tflint",
           "dockerls",
-          "bashls"
+          "bashls",
+          "autotools_ls",
         },
       })
     end,
@@ -55,6 +56,33 @@ return {
         filetypes = { "python" },
       })
       lspconfig.terraformls.setup({
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          if client.resolved_capabilities.document_formatting then
+            vim.api.nvim_buf_set_keymap(
+              bufnr,
+              "n",
+              "<leader>gf",
+              "<cmd>lua vim.lsp.buf.formatting()<CR>",
+              { noremap = true, silent = true }
+            )
+          end
+        end,
+        flags = {
+          debounce_text_changes = 150,
+        },
+        settings = {
+          terraform = {
+            terraform_ls = {
+              logLevel = "warn",
+            },
+          },
+        },
+        on_attach = function(client)
+          vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+        end,
+      })
+      lspconfig.autotools_ls.setup({
         capabilities = capabilities,
       })
       lspconfig.bashls.setup({
