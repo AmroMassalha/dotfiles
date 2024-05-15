@@ -1,0 +1,18 @@
+
+#!/bin/bash
+
+# Define the project directory
+PROJECT_DIR="$HOME/Projects/bmr_monitoring"
+
+# Activate the virtual environment
+source "$PROJECT_DIR/venv/bin/activate"
+
+# Set PYTHONPATH environment variable
+export PYTHONPATH="$PROJECT_DIR"
+
+# Run the Python script
+python "$PROJECT_DIR/escalator/app.py"
+
+# Deactivate the virtual environment and clean up environment variables
+deactivate
+unset PYTHONPATH
