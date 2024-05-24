@@ -87,14 +87,6 @@ return {
       })
       lspconfig.bashls.setup({
         capabilities = capabilities,
-        cmd = { "terraform-ls" },
-        arg = { "server" },
-        filetypes = { "terraform", "tf", "terraform-vars" },
-        root_dir = function(fname)
-          return lspconfig.util.find_git_ancestor(fname)
-              or lspconfig.util.root_pattern(".git", "tf_venv")(fname)
-              or lspconfig.util.path.dirname(fname)
-        end,
       })
       lspconfig.lua_ls.setup({
         capabilities = capabilities,

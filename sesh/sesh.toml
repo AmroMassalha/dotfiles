@@ -1,3 +1,6 @@
+[default_session]
+startup_command = "nvim -c ':Telescope find_files'"
+
 [[session]]
 name = "Downloads 📥"
 path = "~/Downloads"
@@ -7,3 +10,8 @@ startup_command = "ls"
 name = "Dotfiles"
 path = "~/dotfiles/"
 startup_command = "v ."
+
+[[session]]
+name = "Monitoring-*"
+path = "~/Projects/bmr_monitoring/"
+startup_command = "source venv/bin/activate && v ."

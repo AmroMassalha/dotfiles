@@ -102,9 +102,9 @@ eval "$(zoxide init zsh)"
 alias cat="bat -pp"
 alias cd="z"
 
-alias v="nvim"
-alias vim="nvim"
-export VISUAL="nvim"
+alias v="nvim -w ~/.vimlog '$@'"
+alias vim="v"
+export VISUAL="v"
 export EDITOR="$VISUAL"
 
 alias oo="z ~/Documents/Obsidian/AmroMassalha"
@@ -112,6 +112,8 @@ alias or='vim $HOME/Documents/Obsidian/AmroMassalha/inbox/*.md'
 alias ou='z ~/dotfiles/notion-obsidian-sync-app/ && node batchUpload.js --lastmod-days-window 5'
 
 alias t=tmux
+
+alias ov="/Applications/OpenVPN\ Connect/OpenVPN\ Connect.app/Contents/MacOS/OpenVPN\ Connect"
 
 
 export PYENV_ROOT="$HOME/.pyenv"
