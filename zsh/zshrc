@@ -111,7 +111,8 @@ alias oo="z ~/Documents/Obsidian/AmroMassalha"
 alias or='vim $HOME/Documents/Obsidian/AmroMassalha/inbox/*.md'
 alias ou='z ~/dotfiles/notion-obsidian-sync-app/ && node batchUpload.js --lastmod-days-window 5'
 
-alias t=tmux
+alias tn="tmux new -s "
+alias ta="tmux a -t "
 
 alias ov="/Applications/OpenVPN\ Connect/OpenVPN\ Connect.app/Contents/MacOS/OpenVPN\ Connect"
 
