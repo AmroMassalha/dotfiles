@@ -22,8 +22,24 @@ return {
 
     local luasnip = require("luasnip")
 
+    local s = luasnip.snippet
+    local t = luasnip.text_node
+    local i = luasnip.insert_node
+
     local lspkind = require("lspkind")
 
+    luasnip.snippets = {
+      yaml = {
+        s("task", {
+          t("- name: "),
+          i(1, "Task name"),
+          t({ "", "  ansible.builtin." }),
+          i(2, "module_name"),
+          t({ "", "    " }),
+          i(0),
+        }),
+      },
+    }
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 

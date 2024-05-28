@@ -3,9 +3,9 @@ return {
 
   dependencies = { "mason.nvim" },
 
-  opts = function (_, opts)
+  opts = function(_, opts)
     opts.root_dir = opts.root_dir
-      or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
+        or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
   end,
   config = function()
     local augroup = vim.api.nvim_create_augroup("NoneLsFormatting", {})
@@ -27,7 +27,9 @@ return {
     null_ls.setup({
       sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettier.with({
+          disabled_filetypes = { "yaml.ansible" },
+        }),
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.terraform_fmt,
 
@@ -35,6 +37,8 @@ return {
         null_ls.builtins.diagnostics.tfsec,
         null_ls.builtins.diagnostics.pylint,
         null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.diagnostics.ansible_lint,
 
         null_ls.builtins.completion.spell,
       },

@@ -114,6 +114,10 @@ alias ou='z ~/dotfiles/notion-obsidian-sync-app/ && node batchUpload.js --lastmo
 alias tn="tmux new -s "
 alias ta="tmux a -t "
 
+alias ka="kubectl apply -f "
+alias kd="kubectl delete -f "
+alias k="kubectl "
+
 alias ov="/Applications/OpenVPN\ Connect/OpenVPN\ Connect.app/Contents/MacOS/OpenVPN\ Connect"
 
 

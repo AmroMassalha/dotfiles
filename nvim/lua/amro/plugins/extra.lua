@@ -49,4 +49,7 @@ return {
       require("codeium").setup({})
     end,
   },
+  {
+    "pearofducks/ansible-vim",
+  },
 }

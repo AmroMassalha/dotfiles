@@ -24,6 +24,9 @@ return {
           "dockerls",
           "bashls",
           "autotools_ls",
+          "ansiblels",
+          "yamlls",
+          "jinja_lsp",
         },
       })
     end,
@@ -82,6 +85,13 @@ return {
           vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
         end,
       })
+      lspconfig.jinja_lsp.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.ansiblels.setup({
+        capabilities = capabilities,
+      })
+
       lspconfig.autotools_ls.setup({
         capabilities = capabilities,
       })
@@ -104,6 +114,17 @@ return {
 
       lspconfig.dockerls.setup({
         capabilities = capabilities,
+      })
+      lspconfig.yamlls.setup({
+        capabilities = capabilities,
+        settings = {
+          yaml = {
+            schemas = {
+              kubernetes = "*.k8s.yaml",
+              ["https://json.schemastore.org/ansible-playbook.json"] = "/*.ansible.yaml",
+            },
+          },
+        },
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {
