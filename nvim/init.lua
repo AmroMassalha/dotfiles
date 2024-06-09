@@ -1,3 +1,2 @@
-require("amro.core")
-require("amro.lazy")
-vim.cmd("colorscheme catppuccin-mocha")
+require("config.core")
+require("config.lazy")

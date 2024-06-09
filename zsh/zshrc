@@ -140,3 +140,6 @@ bindkey '^[[B' history-search-forward
 
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+PNPM_HOME="/root/.local/share/pnpm"
+PATH="/root/.npm-global/bin:${PNPM_HOME}:${PATH}"
