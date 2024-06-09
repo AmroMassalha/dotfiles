@@ -8,6 +8,7 @@ return {
     "folke/todo-comments.nvim",
     "jackysee/telescope-hg.nvim",
     "folke/noice.nvim",
+    "nvim-telescope/telescope-hop.nvim",
     {
       "exosyphon/telescope-color-picker.nvim",
       config = function()
@@ -37,8 +38,16 @@ return {
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
+            ["<C-h>"] = require("telescope").extensions.hop.hop,
             ["<C-j>"] = actions.move_selection_next, -- move to next result
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            ["<C-space>"] = function(prompt_bufnr)
+              local opts = {
+                callback = actions.toggle_selection,
+                loop_callback = actions.send_selected_to_qflist,
+              }
+              require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
+            end,
           },
         },
       },
@@ -47,6 +56,7 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("hg")
     telescope.load_extension("noice")
+    telescope.load_extension("hop")
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
