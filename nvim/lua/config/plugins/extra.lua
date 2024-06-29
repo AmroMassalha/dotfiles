@@ -30,4 +30,5 @@ return {
       })
     end,
   },
+  { "towolf/vim-helm", ft = "helm" },
 }

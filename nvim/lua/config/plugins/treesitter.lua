@@ -5,15 +5,33 @@ return {
   dependencies = {
     "windwp/nvim-ts-autotag",
   },
+  opts = function(_)
+    vim.treesitter.language.register("hcl", "terraform")
+    vim.treesitter.language.register("hcl", "terraform-vars")
+  end,
   config = function()
     -- import nvim-treesitter plugin
     local treesitter = require("nvim-treesitter.configs")
+    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+    parser_config.gotmpl = {
+      install_info = {
+        url = "https://github.com/ngalaiko/tree-sitter-go-template",
+        files = { "src/parser.c" },
+      },
+      filetype = "gotmpl",
+      used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
+    }
 
     -- configure treesitter
     treesitter.setup({ -- enable syntax highlighting
       highlight = {
         enable = true,
+        additional_vim_regex_highlighting = false,
       },
+
+      sync_install = false,
+      auto_install = true,
       -- enable indentation
       indent = { enable = true },
       -- enable autotagging (w/ nvim-ts-autotag plugin)
@@ -22,21 +40,16 @@ return {
       },
       -- ensure these language parsers are installed
       ensure_installed = {
-        "yaml",
-        "markdown",
-        "markdown_inline",
         "bash",
         "lua",
-        "vim",
+        "yaml",
         "dockerfile",
-        "gitignore",
-        "query",
-        "vimdoc",
-        "terraform",
+        "go",
+        "hcl",
         "json",
+        "make",
         "python",
-        "cmake",
-        "helm",
+        "gotmpl",
       },
       incremental_selection = {
         enable = true,

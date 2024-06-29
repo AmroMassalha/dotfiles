@@ -36,25 +36,10 @@ vim.opt.isfname:append("@-@") -- include '@' in the set of characters considered
 
 vim.opt.updatetime = 50 -- Time in milliseconds to wait before triggering the plugin events after a change
 
+vim.opt.colorcolumn = "120" -- highlight column 120
+
 -- clipboard
 vim.opt.clipboard:append("unnamedplus")
-
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "*.py",
-  callback = function()
-    vim.opt.textwidth = 79
-    vim.opt.colorcolumn = "79"
-  end,
-}) -- python formatting
-
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = { "*.js", "*.html", "*.css", "*.lua" },
-  callback = function()
-    vim.opt.tabstop = 2
-    vim.opt.softtabstop = 2
-    vim.opt.shiftwidth = 2
-  end,
-}) -- javascript formatting
 
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*",
@@ -84,11 +69,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   command = [[%s/\s\+$//e]],
 }) -- remove trailing whitespace from all lines before saving a file)
 
-local Black = vim.api.nvim_create_augroup("Black", { clear = true })
-vim.api.nvim_create_autocmd("bufWritePost", {
-  group = Black,
-  pattern = "*.py",
-  command = "silent !black %",
-})
-
 vim.api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*/templates/*.yaml", "*/templates/*.tpl", "*.gotmpl", "helmfile*.yaml" },
+  callback = function()
+    vim.opt_local.filetype = "helm"
+  end,
+})
