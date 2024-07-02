@@ -20,32 +20,33 @@ color = "0xF5E0DC"
 index = 17
 
 [colors.bright]
-black = "0x988BA2"
-blue = "0x96CDFB"
-cyan = "0x89DCEB"
-green = "0xABE9B3"
-magenta = "0xF5C2E7"
-red = "0xF28FAD"
-white = "0xD9E0EE"
-yellow = "0xFAE3B0"
+black = "#5b6268"
+blue = "#3071db"
+cyan = "#46d9ff"
+green = "#4db5bd"
+magenta = "#a9a1e1"
+red = "#da8548"
+white = "#dfdfdf"
+yellow = "#ecbe7b"
 
 [colors.cursor]
-cursor = "0xF5E0DC"
-text = "0x1E1D2F"
+cursor = "#528bff"
+text = "CellBackground"
 
 [colors.normal]
-black = "0x6E6C7E"
-blue = "0x96CDFB"
-cyan = "0x89DCEB"
-green = "0xABE9B3"
-magenta = "0xF5C2E7"
-red = "0xF28FAD"
-white = "0xD9E0EE"
-yellow = "0xFAE3B0"
+black = "#1c1f24"
+blue = "#51afef"
+cyan = "#5699af"
+green = "#98be65"
+magenta = "#c678dd"
+red = "#ff6c6b"
+white = "#abb2bf"
+yellow = "#da8548"
 
 [colors.primary]
-background = "0x1E1D2F"
-foreground = "0xD9E0EE"
+background = "#282c34"
+foreground = "#bbc2cf"
+
 
 [cursor]
 blink_interval = 500
@@ -53,8 +54,11 @@ blink_timeout = 5
 unfocused_hollow = false
 
 [cursor.style]
-blinking = "Off"
-shape = "Block"
+blinking = "Always"
+
+[colors.selection]
+background = "#3e4451"
+text = "CellForeground"
 
 [env]
 TERM = "xterm-256color"
@@ -69,6 +73,11 @@ startup_mode = "Maximized"
 option_as_alt = "Both"
 opacity = 0.7
 blur = true
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
 
 [window.dimensions]
 columns = 160
@@ -95,7 +104,7 @@ x = 0
 y = 0
 
 [mouse]
-hide_when_typing = true
+hide_when_typing = false
 
 [[mouse.bindings]]
 action = "PasteSelection"
