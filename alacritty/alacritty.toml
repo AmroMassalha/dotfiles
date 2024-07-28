@@ -88,8 +88,8 @@ x = 4
 y = 4
 
 [font]
-size = 18
-normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular"}
+size = 21
+normal = { family = "ComicShannsMono Nerd Font", style = "Regular"}
 
 
 [font.glyph_offset]

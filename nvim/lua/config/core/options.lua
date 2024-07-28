@@ -6,11 +6,14 @@ vim.opt.relativenumber = true -- relative line numbers
 
 vim.opt.conceallevel = 2 -- so that `` is visible in markdown files
 
+vim.opt.showmatch = true -- show matching brackets
+
 vim.opt.tabstop = 4
+vim.opt.cursorline = true -- highlight the current line
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true -- convert tabs to spaces
--- vim.wo.wrap = false -- do not wrap lines
+vim.wo.wrap = true -- do not wrap lines
 vim.opt.autoindent = true -- auto indentation
 vim.opt.list = true -- show tab characters and trailing whitespace
 vim.opt.formatoptions:remove("t") -- no auto-intent of line breaks, keep line wrap enabled
@@ -37,6 +40,10 @@ vim.opt.isfname:append("@-@") -- include '@' in the set of characters considered
 vim.opt.updatetime = 50 -- Time in milliseconds to wait before triggering the plugin events after a change
 
 vim.opt.colorcolumn = "120" -- highlight column 120
+vim.opt.termguicolors = true -- Enable 24-bit RGB colors
+vim.opt.laststatus = 3 -- Set global statusline
+vim.opt.linebreak = true -- Wrap on word boundary
+vim.opt.foldmethod = "marker" -- Enable folding (default 'foldmarker')
 
 -- clipboard
 vim.opt.clipboard:append("unnamedplus")
@@ -77,3 +84,36 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.opt_local.filetype = "helm"
   end,
 })
+
+-- -- Disable builtin plugins
+local disabled_built_ins = {
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "matchit",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "spellfile_plugin",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+  "tutor",
+  "rplugin",
+  "synmenu",
+  "optwin",
+  "compiler",
+  "bugreport",
+  "ftplugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g["loaded_" .. plugin] = 1
+end

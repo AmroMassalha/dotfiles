@@ -7,7 +7,7 @@ return {
     conform.setup({
       formatters_by_ft = {
         json = { "prettier" },
-        yaml = { "prettier" },
+        yaml = { "~/.config/nvim/scripts/clean_yaml.sh" },
         markdown = { "prettier" },
         lua = { "stylua" },
         python = { "black --config ~/.config/black/pyproject.toml", "isort" },

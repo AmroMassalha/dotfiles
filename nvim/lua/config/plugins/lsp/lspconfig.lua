@@ -96,7 +96,7 @@ return {
                 lintOnSave = true,
                 values = {
                   enable = true,
-                  fileNames = { "values.yaml", "values.lint.yaml", "values*.yaml" },
+                  fileNames = { "values.yaml", "values.lint.yaml", "values*.yaml", "Chart.yaml", "templates/*.yaml" },
                 },
               },
             },

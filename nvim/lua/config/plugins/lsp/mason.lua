@@ -44,6 +44,7 @@ return {
         "black",
         "pylint",
         "snyk",
+        "yamlfmt",
       },
     })
   end,

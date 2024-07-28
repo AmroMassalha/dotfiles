@@ -22,5 +22,4 @@ return {
       require("codeium").setup({})
     end,
   },
-  { "github/copilot.vim" },
 }
