@@ -48,7 +48,6 @@
   "extensions.ignoreRecommendations": true,
   "files.autoSave": "afterDelay",
   "terminal.integrated.fontFamily": "Dank Mono, JetBrainsMono Nerd Font",
-  "terminal.integrated.tabs.enabled": false,
   "terminal.integrated.lineHeight": 1.5,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.env.osx": {
@@ -57,7 +56,8 @@
   "apc.electron": {
     "titleBarStyle": "hiddenInset",
     "transparent": true,
-    "opacity": 90
+    "opacity": 0.90,
+    "visualEffectState": "active"
   },
   "apc.font.family": "ComicShannsMono Nerd Font",
   "apc.listRow": {
@@ -92,9 +92,8 @@
   "projectManager.git.baseFolders": [
     "/Users/amrom/Projects/bvcloud",
     "/Users/amrom/Projects/devops",
-    "/Users/amrom/dotfiles",
-  ],
-  "gitProjectManager.baseProjectsFolders": [],
+    "/Users/amrom/dotfiles"
+  ]
   // "recommendations": [
   //     "josemurilloc.aura-spirit-dracula",
   //     "pkief.material-icon-theme",
