@@ -6,10 +6,10 @@
   "window.zoomLevel": 2,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "Vim Deep Dark",
-  "workbench.tree.renderIndentGuides": "none",
+  "workbench.tree.renderIndentGuides": "onHover",
   "workbench.sideBar.location": "right",
   "window.titleBarStyle": "native",
-  "workbench.startupEditor": "none",
+  "workbench.startupEditor": "welcomePage",
   "workbench.colorCustomizations": {
     "editorSuggestWidget.selectedBackground": "#231739",
     "sideBar.background": "#191521",
@@ -17,33 +17,33 @@
     "list.inactiveSelectionBackground": "#231739",
     "list.focusBackground": "#231739",
     "list.hoverBackground": "#231739",
-    "terminalCursor.foreground": "#C45DFF",
+    "terminalCursor.foreground": "#C45DFF"
   },
   "editor.minimap.enabled": false,
-  "editor.guides.indentation": false,
+  "editor.guides.indentation": true,
+  "editor.lineNumbers": "relative",
   "editor.renderWhitespace": "none",
   "editor.renderLineHighlight": "none",
-  "editor.matchBrackets": "never",
-  "editor.lightbulb.enabled": "off",
+  "editor.matchBrackets": "near",
+  "editor.lightbulb.enabled": "onCode",
   "editor.hover.enabled": false,
-  "editor.showFoldingControls": "never",
+  "editor.showFoldingControls": "mouseover",
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
-  "editor.overviewRulerBorder": false,
+  "editor.overviewRulerBorder": true,
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
   "editor.tabSize": 2,
-  "editor.detectIndentation": false,
+  "editor.detectIndentation": true,
   "editor.fontFamily": "ComicShannsMono Nerd Font",
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
-  "breadcrumbs.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   "git.decorations.enabled": false,
-  "scm.diffDecorations": "none",
+  "scm.diffDecorations": "all",
   "files.insertFinalNewline": true,
   "extensions.ignoreRecommendations": true,
   "files.autoSave": "afterDelay",
@@ -56,34 +56,13 @@
   "apc.electron": {
     "titleBarStyle": "hiddenInset",
     "transparent": true,
-    "opacity": 0.90,
+    "opacity": 0.9,
     "visualEffectState": "active"
   },
   "apc.font.family": "ComicShannsMono Nerd Font",
   "apc.listRow": {
-    "lists": [
-      "explorer-folders-view",
-      "quick-input-list",
-      "results"
-    ],
+    "lists": ["explorer-folders-view", "quick-input-list", "results"],
     "height": 23
-  },
-  "apc.stylesheet": {
-    ".title-actions": "display: none !important",
-    ".quick-input-widget.show-file-icons, .editor-widget.find-widget": "box-shadow: none !important",
-    ".filematch .monaco-icon-label:before, .custom-list-row.results .monaco-list-row .monaco-icon-label:before": "background-position: 0 bottom !important",
-    ".filematch .monaco-count-badge": "padding: 5px 6px 0 6px !important",
-    ".sidebar .title-label": "padding: 0 !important",
-    ".monaco-workbench .monaco-list:not(.element-focused):focus:before": "outline: none !important",
-    ".sidebar": "border: none !important",
-    ".monaco-editor .cursors-layer .cursor": "background-image: linear-gradient(135deg, #67D0FF 10%, #C45DFF 100%)",
-    ".quick-input-list-row div": "display: flex !important; align-items: center !important",
-    ".panel .composite.title": "visibility: hidden !important",
-    ".title.show-file-icons .label-container .monaco-icon-label.file-icon": "padding-bottom: 6px !important",
-    ".sidebar .title-label h2": "line-height: 2.8 !important",
-    ".monaco-editor .scroll-decoration": "display: none !important",
-    ".monaco-scrollable-element > .shadow.top": "display: none !important",
-    ".monaco-split-view2 > .monaco-scrollable-element > .split-view-container": "background: #191521 !important",
   },
   "animations.Install-Method": "Apc Customize UI++",
   "apc.imports": [
@@ -92,8 +71,135 @@
   "projectManager.git.baseFolders": [
     "/Users/amrom/Projects/bvcloud",
     "/Users/amrom/Projects/devops",
-    "/Users/amrom/dotfiles"
-  ]
+    "/Users/amrom/dotfiles",
+    "/Users/amrom/Projects/bvcloud_clusters",
+    "/Users/amrom/Projects/bmr_monitoring",
+    "~/Projects/devops-toolkit-crossplane",
+    "~/Projects/beamr_cloud",
+    "~/Projects/beamr-cloud-backend"
+  ],
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "workbench.activityBar.location": "bottom",
+  "workbench.view.alwaysShowHeaderActions": true,
+  "breadcrumbs.enabled": false,
+  "apc.theme": [{}],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "animations.CursorAnimation": true,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "todohighlight.isEnable": false,
+  "todohighlight.isCaseSensitive": true,
+  "todohighlight.keywords": [
+    "DEBUG:",
+    "REVIEW:",
+    {
+      "text": "NOTE:",
+      "color": "#ff0000",
+      "backgroundColor": "yellow",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "HACK:",
+      "color": "#000",
+      "isWholeLine": false
+    },
+    {
+      "text": "TODO:",
+      "color": "red",
+      "border": "1px solid red",
+      "borderRadius": "2px", //NOTE: using borderRadius along with `border` or you will see nothing change
+      "backgroundColor": "rgba(0,0,0,.2)"
+      //other styling properties goes here ...
+    }
+  ],
+  "todohighlight.keywordsPattern": "TODO:|FIXME:|\\(([^)]+)\\)", //highlight `TODO:`,`FIXME:` or content between parentheses
+  "todohighlight.defaultStyle": {
+    "color": "red",
+    "backgroundColor": "#ffab00",
+    "overviewRulerColor": "#ffab00",
+    "cursor": "pointer",
+    "border": "1px solid #eee",
+    "borderRadius": "2px",
+    "isWholeLine": true
+    //other styling properties goes here ...
+  },
+  "todohighlight.include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.html",
+    "**/*.php",
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "todohighlight.exclude": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.vscode/**",
+    "**/.github/**",
+    "**/_output/**",
+    "**/*.min.*",
+    "**/*.map",
+    "**/.next/**"
+  ],
+  "todohighlight.maxFilesForSearch": 5120,
+  "todohighlight.toggleURI": false,
+  "clickup-pretty-tasks.clickup-apikey": "pk_66667963_ZTCYL7IIRYKMJJICQC0YP9ZT6CSIO3W0",
+  "clickup-pretty-tasks.clickup-teamid": "42655519",
+  "clickup-kanban.auth.token": "pk_66667963_ZTCYL7IIRYKMJJICQC0YP9ZT6CSIO3W0",
+  "clickup-kanban.auth.teamId": "42655519",
+  "clickup-kanban.config.vs-config": {
+    "filters": [
+      {
+        "name": "DevOpsTasks",
+        "default": true,
+        "selectedLists": [
+          {
+            "id": "901203496331",
+            "name": "DevOps",
+            "orderindex": 0,
+            "content": "",
+            "status": null,
+            "priority": null,
+            "assignee": null,
+            "task_count": 3,
+            "due_date": null,
+            "start_date": null,
+            "folder": {
+              "id": "90122042771",
+              "name": "hidden",
+              "hidden": true,
+              "access": true
+            },
+            "space": {
+              "id": "66676162",
+              "name": "Tasks",
+              "access": true
+            },
+            "archived": false,
+            "override_statuses": true,
+            "permission_level": "create"
+          }
+        ],
+        "selectedAssignees": [],
+        "tags": [],
+        "statuses": [],
+        "subtasks": true,
+        "include_closed": false,
+        "allTracking": false
+      }
+    ],
+    "ganttMode": false
+  }
   // "recommendations": [
   //     "josemurilloc.aura-spirit-dracula",
   //     "pkief.material-icon-theme",
