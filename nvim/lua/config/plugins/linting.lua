@@ -4,6 +4,25 @@ return {
   config = function()
     local lint = require("lint")
 
+    lint.linters.yamllint = {
+      name = "yamllint",
+      cmd = "yamllint",
+      args = {
+        "--config-file",
+        "~/dotfiles/lint/.yamllint",
+        "-",
+      },
+      stdin = true,
+      parser = require("lint.parser").from_errorformat("%f:%l:%c: %t: %m", {
+        source = "yamllint",
+        severity = {
+          ["error"] = vim.diagnostic.severity.ERROR,
+          ["warning"] = vim.diagnostic.severity.WARN,
+          ["info"] = vim.diagnostic.severity.INFO,
+        },
+      }),
+    }
+
     lint.linters_by_ft = {
       python = { "pylint" },
       terraform = { "tflint" },
