@@ -1,0 +1,16 @@
+# /home/amrm/.config/tmuxinator/DevOps.yml
+
+name: DevOps
+project_root: ~/Projects/devops/
+
+windows:
+  - DevOps:
+      layout: main-vertical
+      panes:
+        - cd ~/Projects/devops/
+        - ~/dotfiles/scripts/__you_get_this.sh
+  - Nvim:
+      layout: main-vertical
+      panes:
+        - cd ~/Projects/devops/
+        - nvim

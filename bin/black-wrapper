@@ -1,4 +1,0 @@
-
-#!/bin/bash
-echo "Using config: /home/your_username/.config/pyproject.toml"
-black --config /Users/amrom/.config/pyproject.toml "$@"

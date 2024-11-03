@@ -6,61 +6,27 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 
--- For example, changing the color scheme:
+-- my coolnight colorscheme
 config.colors = {
-	-- Set foreground and background from the [colors.primary] section
-	foreground = "#edecee",  -- colors.primary.foreground
-	background = "#15141b",  -- colors.primary.background
-
-	-- Cursor colors from the [colors.cursor] section
-	cursor_bg = "#a277ff",    -- colors.cursor.cursor
-	cursor_border = "#a277ff", -- colors.cursor.cursor
-	cursor_fg = "#15141b",     -- Set to background color for contrast
-
-	-- Selection colors from the [colors.selection] section
-	selection_bg = "#29263c",  -- colors.selection.background
-	selection_fg = "#edecee",  -- Set to foreground for legibility
-
-	-- ANSI colors from the [colors.normal] section
-	ansi = {
-		"#110f18", -- black
-		"#ff6767", -- red
-		"#61ffca", -- green
-		"#ffca85", -- yellow
-		"#a277ff", -- blue
-		"#a277ff", -- magenta
-		"#61ffca", -- cyan
-		"#edecee", -- white
-	},
-
-	-- Bright ANSI colors from the [colors.bright] section
-	brights = {
-		"#4d4d4d", -- bright black
-		"#ff6767", -- bright red
-		"#61ffca", -- bright green
-		"#ffca85", -- bright yellow
-		"#a277ff", -- bright blue
-		"#a277ff", -- bright magenta
-		"#61ffca", -- bright cyan
-		"#edecee", -- bright white
-	},
+	foreground = "#CBE0F0",
+	background = "#011423",
+	cursor_bg = "#47FF9C",
+	cursor_border = "#47FF9C",
+	cursor_fg = "#011423",
+	selection_bg = "#033259",
+	selection_fg = "#CBE0F0",
+	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
+	brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
 }
 
-config.keys = {
-	-- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
-	{ key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
-	-- Make Option-Right equivalent to Alt-f; forward-word
-	{ key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
-}
-
-config.font = wezterm.font("ComicShannsMono Nerd Font")
-config.font_size = 21
+config.font = wezterm.font("MesloLGS Nerd Font Mono")
+config.font_size = 19
 
 config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.75
-config.macos_window_background_blur = 8
+config.macos_window_background_blur = 10
 
 -- and finally, return the configuration to wezterm
 return config
