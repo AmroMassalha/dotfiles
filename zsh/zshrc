@@ -63,7 +63,6 @@ export TASKRC=~/.taskrc
 export TASKDATA=~/.task task list
 export KUBECONFIG=~/.kube/config
 
-export ANTHROPIC_API_KEY=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
 
 if [[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
