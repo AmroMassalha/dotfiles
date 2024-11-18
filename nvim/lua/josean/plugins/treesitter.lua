@@ -18,11 +18,22 @@ return {
 
     -- configure treesitter
     treesitter.setup({ -- enable syntax highlighting
-      highlight = {
+      ignore_install = {},
+      sync_install = false,
+      modules = {},
+      highlight = { enable = true },
+      auto_install = true,
+      rainbow = {
         enable = true,
+        extended_mode = true,
+        max_file_lines = nil,
       },
-      -- enable indentation
-      indent = { enable = true },
+      indent = {
+        enable = false,
+        -- disable yaml indenting because the grammar is too simplistic, other plugins do it better
+        disable = { "yaml" },
+        additional_vim_regex_highlighting = { "markdown" },
+      },
       -- enable autotagging (w/ nvim-ts-autotag plugin)
       autotag = {
         enable = true,
@@ -30,28 +41,19 @@ return {
       -- ensure these language parsers are installed
       ensure_installed = {
         "json",
-        "javascript",
-        "typescript",
-        "tsx",
         "yaml",
-        "html",
-        "css",
-        "prisma",
         "markdown",
         "markdown_inline",
-        "svelte",
-        "graphql",
         "bash",
         "lua",
         "vim",
         "dockerfile",
-        "gitignore",
         "query",
         "vimdoc",
-        "c",
         "terraform",
         "tmux",
         "helm",
+        "bash",
       },
       incremental_selection = {
         enable = true,

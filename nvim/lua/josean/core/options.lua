@@ -1,6 +1,27 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
+local vcmd = vim.cmd
+
+vcmd("syntax on")
+vcmd("set termguicolors")
+vcmd("syntax enable")
+vcmd("filetype on")
+vcmd("filetype plugin indent on")
+vcmd("set clipboard=unnamedplus")
+vcmd("set winbar=%=%m%F")
+vcmd("set completefunc=emoji#complete")
+vcmd("set wildignore+=*/tmp/*,*.so,*.swp,*.zip")
+vcmd("set backspace=indent,eol,start")
+vcmd("set jumpoptions=view")
+vcmd("set sessionoptions+=tabpages,globals")
+
+-- Treesitter folding
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldenable = false
+vcmd("setlocal nofoldenable")
+vim.api.nvim_set_option("updatetime", 300)
 
 opt.relativenumber = true
 opt.number = true
@@ -17,6 +38,9 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 opt.wrap = false
+
+-- views can only be fully collapsed with the global statusline
+opt.laststatus = 3
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching

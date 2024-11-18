@@ -13,8 +13,6 @@ return {
         svelte = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
-        json = { "prettier" },
-        yaml = { "prettier" },
         markdown = { "prettier" },
         graphql = { "prettier" },
         liquid = { "prettier" },
