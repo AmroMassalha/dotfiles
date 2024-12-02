@@ -18,6 +18,11 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
+    local lsp_flags = {
+      allow_incremental_sync = true,
+      debounce_text_changes = 150,
+    }
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -87,37 +92,16 @@ return {
       end,
       ["yamlls"] = function()
         lspconfig["yamlls"].setup({
-          {
-            capabilities = capabilities,
-            filetypes = { "yaml", "yml" },
-            flags = { debounce_test_changes = 150 },
-            settings = {
-              yaml = {
-                format = {
-                  enable = true,
-                  singleQuote = true,
-                  printWidth = 120,
-                },
-                hover = true,
-                completion = true,
-                validate = true,
-              },
-              schemas = {
-                ["https://json.schemastore.org/chart.json"] = "/deployment/helm/*",
-                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                ["http://json.schemastore.org/github-action"] = { ".github/action.{yml,yaml}" },
-              },
+          capabilities = capabilities,
+          flags = lsp_flags,
+          settings = {
+            yaml = {
               schemaStore = {
                 enable = true,
-                url = "https://www.schemastore.org/api/json/catalog.json",
+                url = "",
               },
             },
           },
-          on_attach = function(client, bufnr)
-            if vim.bo[bufnr].filetype == "helm" then
-              vim.lsp.stop_client(client.id)
-            end
-          end,
         })
       end,
       ["helm_ls"] = function()
