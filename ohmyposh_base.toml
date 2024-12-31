@@ -147,32 +147,8 @@ final_space = true
     display_default = true
 
 [[tooltips]]
-  type = "argocd"
-  tips = ["argocd"]
-  style = "powerline"
-  powerline_symbol = ""
-  foreground = "#ffffff"
-  background = "#FFA400"
-  template = " {{ .Name }}:{{ .User }}@{{ .Server }} "
-
-  [tooltips.properties]
-    display_default = true
-
-[[tooltips]]
-  background = "#a7cae1"
-  foreground = "#100e23"
-  powerline_symbol = ""
-  template = " Helm {{ .Version }}"
-  style = "powerline"
-  type = "helm"
-  tips = ["helm"]
-
-  [tooltips.properties]
-    display_default = true
-
-[[tooltips]]
   type = "kubectl"
-  tips = ["kubectl", "k", "kubectx", "kubens"]
+  tips = ["kubectl", "k", "kubectx", "kubens", "helm"]
   style = "powerline"
   powerline_symbol = ""
   foreground = "#000000"
@@ -187,6 +163,7 @@ final_space = true
 
 [[tooltips]]
   type = "terraform"
+  tips = ["terraform"]
   style = "powerline"
   powerline_symbol = ""
   foreground = "#000000"
@@ -204,19 +181,6 @@ final_space = true
   foreground = "#000000"
   background = "#0B59E7"
   template = "  {{ .Context }} "
-
-  [tooltips.properties]
-    display_default = true
-
-[[tooltips]]
-  leading_diamond = ''
-  trailing_diamond = ''
-  template = '  {{ .Name }} '
-  foreground = 'p:white'
-  background = 'p:blue'
-  type = 'az'
-  style = 'diamond'
-  tips = ['az']
 
   [tooltips.properties]
     display_default = true
